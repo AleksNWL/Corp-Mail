@@ -46,6 +46,14 @@ services:
       - migrations_data:/usr/src/app/migrations
     depends_on:
       - database
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
 
 volumes:
   db_data:
