@@ -1,0 +1,4 @@
+driver = mysql
+connect = host=db dbname=mailserver user=mailuser password=mailpassword
+default_pass_scheme = SHA512-CRYPT
+password_query = SELECT email as user, password FROM users WHERE email='%u';

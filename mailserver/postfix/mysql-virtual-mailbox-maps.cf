@@ -1,0 +1,5 @@
+user = mailuser
+password = mailpassword
+hosts = db
+dbname = mailserver
+query = SELECT email FROM users WHERE email='%s'

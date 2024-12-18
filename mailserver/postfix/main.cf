@@ -1,0 +1,22 @@
+smtpd_banner = $myhostname ESMTP
+biff = no
+
+# Авторизация пользователей
+smtpd_sasl_auth_enable = yes
+smtpd_sasl_type = dovecot
+smtpd_sasl_path = private/auth
+smtpd_sasl_security_options = noanonymous
+
+# TLS шифрование
+smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
+smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
+smtpd_tls_security_level = may
+smtp_tls_security_level = may
+
+# MySQL интеграция
+virtual_mailbox_domains = proxy:mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf
+virtual_mailbox_maps = proxy:mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf
+virtual_alias_maps = proxy:mysql:/etc/postfix/mysql-virtual-alias-maps.cf
+
+# Директории для писем
+virtual_mailbox_base = /var/mail/vhosts

@@ -1,0 +1,5 @@
+user = mailuser
+password = mailpassword
+hosts = db
+dbname = mailserver
+query = SELECT destination FROM aliases WHERE source='%s'
