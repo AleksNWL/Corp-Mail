@@ -34,17 +34,19 @@ services:
       - ./mailserver/postfix:/etc/postfix
       - ./mailserver/dovecot:/etc/dovecot
       - ./mailserver/hold:/var/spool/postfix/hold
+
   backend:
     build:
       context: ./backend
     container_name: backend
-    depends_on:
-      - database
     ports:
       - "5000:5000"
-    environment:
-      - DATABASE_URL=mysql+pymysql://mailuser:mailpassword@db/mailserver
-      - SECRET_KEY=supersecretkey
+    volumes:
+      - ./backend:/usr/src/app
+      - migrations_data:/usr/src/app/migrations
+    depends_on:
+      - database
 
 volumes:
   db_data:
+  migrations_data:
